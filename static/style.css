@@ -120,19 +120,17 @@ body {
 }
 
 footer {
-    background-color: #f1f5f9;
-    /* Light grey background */
+    background-color: var(--secondary-color);
     padding: 1.5rem 0;
     text-align: center;
-    color: #475569;
-    /* Darker slate text */
+    color: rgba(255, 255, 255, 0.8);
     font-size: 0.9rem;
     margin-top: auto;
-    border-top: 1px solid #e2e8f0;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 footer .text-muted {
-    color: #64748b !important;
+    color: rgba(255, 255, 255, 0.6) !important;
 }
 
 
