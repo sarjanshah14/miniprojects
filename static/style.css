@@ -145,7 +145,38 @@ footer .text-muted {
 
 
 
-/* Animations */
+/* Visualization Steps Styles */
+.steps-container {
+    margin-top: 2rem;
+    padding: 1.5rem;
+    background: #ffffff;
+    border-radius: var(--border-radius);
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+    display: none;
+}
+
+.step-item {
+    padding: 1rem;
+    margin-bottom: 0.75rem;
+    border-left: 4px solid var(--primary-color);
+    background: #f8fafc;
+    border-radius: 4px;
+    opacity: 0;
+    transform: translateX(-20px);
+    transition: all 0.5s ease;
+}
+
+.step-item.show {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+.step-number {
+    font-weight: 700;
+    color: var(--primary-color);
+    margin-right: 0.5rem;
+}
+
 @keyframes fadeIn {
     from {
         opacity: 0;

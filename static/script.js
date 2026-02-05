@@ -1,4 +1,28 @@
 document.addEventListener('DOMContentLoaded', () => {
+
+    // Function to display steps one by one
+    const displaySteps = async (steps, containerId, listId) => {
+        const container = document.getElementById(containerId);
+        const list = document.getElementById(listId);
+
+        container.style.display = 'block';
+        list.innerHTML = '';
+
+        for (let i = 0; i < steps.length; i++) {
+            const stepItem = document.createElement('div');
+            stepItem.className = 'step-item';
+            stepItem.innerHTML = `<span class="step-number">Step ${i + 1}:</span> ${steps[i]}`;
+            list.appendChild(stepItem);
+
+            // Trigger animation
+            await new Promise(resolve => setTimeout(resolve, 100));
+            stepItem.classList.add('show');
+
+            // Wait before showing next step
+            await new Promise(resolve => setTimeout(resolve, 600));
+        }
+    };
+
     // --- DAA: Counting Sort Handler ---
     const sortBtn = document.getElementById('sort-btn');
     if (sortBtn) {
@@ -7,10 +31,12 @@ document.addEventListener('DOMContentLoaded', () => {
             const resultBox = document.getElementById('result-box');
             const sortedOutput = document.getElementById('sorted-output');
             const errorMsg = document.getElementById('error-msg');
+            const stepsContainer = document.getElementById('steps-container');
 
             // Reset states
             resultBox.style.display = 'none';
             errorMsg.style.display = 'none';
+            if (stepsContainer) stepsContainer.style.display = 'none';
 
             const inputData = inputField.value.trim();
             if (!inputData) {
@@ -19,15 +45,15 @@ document.addEventListener('DOMContentLoaded', () => {
                 return;
             }
 
-            // Convert input to array of integers
             const numbers = inputData.split(',').map(n => n.trim()).filter(n => n !== "").map(Number);
-
-            // Check for NaNs
             if (numbers.some(isNaN)) {
                 errorMsg.innerText = "Invalid input. Please enter numbers separated by commas.";
                 errorMsg.style.display = 'block';
                 return;
             }
+
+            sortBtn.disabled = true;
+            sortBtn.innerText = "Processing...";
 
             try {
                 const response = await fetch('/counting-sort', {
@@ -39,6 +65,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 const data = await response.json();
 
                 if (response.ok) {
+                    await displaySteps(data.steps, 'steps-container', 'steps-list');
                     sortedOutput.innerText = data.sorted.join(', ');
                     resultBox.style.display = 'block';
                 } else {
@@ -46,9 +73,11 @@ document.addEventListener('DOMContentLoaded', () => {
                     errorMsg.style.display = 'block';
                 }
             } catch (err) {
-                errorMsg.innerText = "Connection failed. Make sure the server is running.";
+                errorMsg.innerText = "Connection failed.";
                 errorMsg.style.display = 'block';
-                console.error(err);
+            } finally {
+                sortBtn.disabled = false;
+                sortBtn.innerText = "Sort & Visualize Steps";
             }
         });
     }
@@ -61,6 +90,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const parityType = document.getElementById('parity-type');
             const resultBox = document.getElementById('result-box');
             const errorMsg = document.getElementById('error-msg');
+            const stepsContainer = document.getElementById('steps-container');
 
             // Result elements
             const originalData = document.getElementById('res-original');
@@ -71,6 +101,7 @@ document.addEventListener('DOMContentLoaded', () => {
             // Reset states
             resultBox.style.display = 'none';
             errorMsg.style.display = 'none';
+            if (stepsContainer) stepsContainer.style.display = 'none';
 
             const binaryValue = binaryInput.value.trim();
             if (!binaryValue) {
@@ -78,6 +109,9 @@ document.addEventListener('DOMContentLoaded', () => {
                 errorMsg.style.display = 'block';
                 return;
             }
+
+            parityBtn.disabled = true;
+            parityBtn.innerText = "Calculating...";
 
             try {
                 const response = await fetch('/parity', {
@@ -92,6 +126,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 const data = await response.json();
 
                 if (response.ok) {
+                    await displaySteps(data.steps, 'steps-container', 'steps-list');
                     originalData.innerText = data.original;
                     parityBit.innerText = data.parity_bit;
                     transmittedData.innerText = data.transmitted;
@@ -102,9 +137,11 @@ document.addEventListener('DOMContentLoaded', () => {
                     errorMsg.style.display = 'block';
                 }
             } catch (err) {
-                errorMsg.innerText = "Connection failed. Make sure the server is running.";
+                errorMsg.innerText = "Connection failed.";
                 errorMsg.style.display = 'block';
-                console.error(err);
+            } finally {
+                parityBtn.disabled = false;
+                parityBtn.innerText = "Generate & Visualize Steps";
             }
         });
     }
