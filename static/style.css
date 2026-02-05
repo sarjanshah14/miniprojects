@@ -1,11 +1,11 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&family=Outfit:wght@300;400;700&display=swap');
 
 :root {
-    --primary-color: #4f46e5;
-    --secondary-color: #7c3aed;
+    --primary-color: #1e3a8a;
+    --secondary-color: #0f172a;
     --bg-color: #f8fafc;
     --card-bg: #ffffff;
-    --text-color: #1e293b;
+    --text-color: #0f172a;
     --border-radius: 12px;
 }
 
@@ -20,8 +20,18 @@ body {
 
 .navbar {
     background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
-    padding: 0.5rem 0;
+    padding: 0.75rem 0;
     box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+}
+
+.nav-link {
+    color: rgba(255, 255, 255, 0.8) !important;
+    font-weight: 500;
+    transition: color 0.3s ease;
+}
+
+.nav-link:hover {
+    color: white !important;
 }
 
 .navbar-brand {
@@ -62,7 +72,7 @@ body {
 .card-header-custom {
     padding: 1rem;
     text-align: center;
-    background: linear-gradient(135deg, rgba(79, 70, 229, 0.1), rgba(124, 58, 237, 0.1));
+    background: linear-gradient(135deg, rgba(30, 58, 138, 0.1), rgba(15, 23, 42, 0.1));
 }
 
 .btn-primary-custom {
