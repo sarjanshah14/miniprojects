@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Counting Sort Visualizer - DAA</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+
+    <nav class="navbar navbar-expand-lg navbar-dark">
+        <div class="container">
+            <a class="navbar-brand" href="/">Mini Project Lab</a>
+            <div class="ms-auto">
+                <a href="/" class="btn btn-sm btn-outline-light">Back to Home</a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container mt-3 fade-in">
+        <div class="row justify-content-center">
+            <div class="col-lg-8">
+                <div class="card p-3">
+                    <h2 class="text-center mb-3">DAA: Counting Sort Visualizer</h2>
+                    <p class="text-center text-muted mb-3">Enter a list of integers separated by commas to sort them
+                        using the Counting Sort algorithm. Swaps and counts will be visualized.</p>
+
+                    <div class="mb-3">
+                        <label for="numbers-input" class="form-label fw-bold">Input Numbers</label>
+                        <input type="text" class="form-control form-control-lg" id="numbers-input"
+                            placeholder="e.g. 5, 2, 9, 1, 5, 6" autocomplete="off">
+                        <div id="error-msg" class="error-message"></div>
+                    </div>
+
+                    <button id="sort-btn" class="btn btn-primary-custom w-100 py-3 mt-2">Sort Numbers</button>
+
+                    <div id="result-box" class="result-box mt-4">
+                        <h4 class="h5 fw-bold">Sorted Output:</h4>
+                        <p id="sorted-output" class="fs-4 text-primary fw-bold mb-0"></p>
+                    </div>
+                </div>
+
+                <div class="mt-4 p-3 bg-white rounded shadow-sm">
+                    <h5>About Counting Sort</h5>
+                    <p class="small text-muted">Counting Sort is an integer sorting algorithm that works by counting the
+                        number of objects having each distinct key value. It's highly efficient for sorting integers
+                        where the range of potential values (k) is not significantly larger than the number of values to
+                        be sorted (n). Time Complexity: O(n + k).</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2024 Academic Evaluation Portal</p>
+    </footer>
+
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>
