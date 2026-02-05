@@ -16,12 +16,18 @@ body {
     min-height: 100vh;
     display: flex;
     flex-direction: column;
+    padding-top: 70px;
+    /* Space for fixed navbar */
 }
 
 .navbar {
     background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
     padding: 0.75rem 0;
     box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 1000;
 }
 
 .nav-link {
@@ -62,6 +68,8 @@ body {
     overflow: hidden;
     background-color: var(--card-bg);
     box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+    margin-bottom: 2rem;
+    /* Added margin below divs */
 }
 
 .card:hover {
@@ -107,17 +115,19 @@ body {
 }
 
 footer {
-    background-color: var(--secondary-color);
+    background-color: #f1f5f9;
+    /* Light grey background */
     padding: 1.5rem 0;
     text-align: center;
-    color: rgba(255, 255, 255, 0.7);
+    color: #475569;
+    /* Darker slate text */
     font-size: 0.9rem;
     margin-top: auto;
-    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    border-top: 1px solid #e2e8f0;
 }
 
 footer .text-muted {
-    color: rgba(255, 255, 255, 0.6) !important;
+    color: #64748b !important;
 }
 
 
